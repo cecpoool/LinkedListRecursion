@@ -11,29 +11,24 @@ namespace Exercises
                 return ans;
             }
 
-            return FactorialRec(num-1, ans*num);
-            // return num*FactorialRec(num-1)
+           return num*FactorialRec(num-1);
         }
 
-        /// <summary>
-        /// Creates a list of numbers from 1 to num.  Initialise numsList with empty List.
-        /// </summary>
-        /// <param name="num"></param>
-        /// <param name="numsList"></param>
-        /// <returns></returns>
         public List<int> CountRec(int num, List<int> numsList) {
-            return new List<int>();
+
+            if(num == 0) return numsList;
+
+            numsList.Insert(0, num);
+
+            return CountRec(--num, numsList);
         }
 
-        /// <summary>
-        /// Returns the result of num to the power of pow.
-        /// </summary>
-        /// <param name="num"></param>
-        /// <param name="pow"></param>
-        /// <param name="ans"></param>
-        /// <returns></returns>
         public long ExponentialRec(int num, int pow, long ans = 1) {
-            return 1;
+            if (pow == 0) return ans;
+
+            ans = ans * num;
+
+            return ExponentialRec(num, --pow, ans);
         }
 
         /// <summary>
@@ -43,7 +38,13 @@ namespace Exercises
         /// <param name="revWord"></param>
         /// <returns></returns>    
         public string WordReverseRec(string word, string revWord = "") {
-            return "";
+
+            if (word.Length > 0)
+                return word[word.Length - 1] + WordReverseRec(word.Substring(0, word.Length - 1));
+            else
+                word = revWord;
+                return revWord;
+
         }
 
 
